@@ -4,8 +4,8 @@ import { ContactList } from './ContactsList/ContactList';
 import { Filter } from './Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { IsLoading, filteredContacts } from 'Redux/selectors';
-import { fetchContacts } from 'Redux/operations';
+import { IsLoading, filteredContacts } from 'redux/selectors';
+import { fetchContacts } from 'redux/operations';
 
 export const App = () => {
   const filteredContactsList = useSelector(filteredContacts);

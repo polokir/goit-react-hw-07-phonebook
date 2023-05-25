@@ -7,8 +7,8 @@ import {
   ListContact,
 } from './ContactList.styled';
 
-import { deleteContact } from 'Redux/operations';
-import {  filteredContacts } from 'Redux/selectors';
+import { deleteContact } from 'redux/operations';
+import {  filteredContacts } from 'redux/selectors';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
