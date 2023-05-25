@@ -1,24 +1,30 @@
+import { Container } from './App.styled';
 import { ContactForm } from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
-import { Section } from './Section/Section';
+import { ContactList } from './ContactsList/ContactList';
+import { Filter } from './Filter/Filter';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { IsLoading, filteredContacts } from 'Redux/selectors';
+import { fetchContacts } from 'Redux/operations';
 
 export const App = () => {
-  
+  const filteredContactsList = useSelector(filteredContacts);
+  const dispatch = useDispatch();
+  const loader = useSelector(IsLoading);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
   return (
-    <div
-      style={{
-        width: '100vh',
-        display: 'block',
-        color: '#010101',
-        margin: '0 auto',
-      }}
-    >
-      <Section title={'Phonebook'}>
-        <ContactForm />
-      </Section>
-      <Section title={'Contacts'}>
-        <ContactList/>
-      </Section>
-    </div>
+    <Container>
+      <h1>Phonebook</h1>
+      <ContactForm />
+      <h2>Contacts</h2>
+      <Filter />
+        <ContactList />
+      {!filteredContactsList.length && !loader && (
+        <p>No contacts</p>
+      )}
+    </Container>
   );
 };

@@ -1,17 +1,25 @@
-import { useDispatch } from "react-redux"
-import { filterContact } from "redux/slices/contact-slice"
+import { useDispatch, useSelector } from 'react-redux';
 
-export const Filter = () =>{
-  const dispatch = useDispatch()
 
-    return(
+import { setFilter } from 'Redux/filterSlice';
+import { filterValue } from 'Redux/selectors';
+
+export const Filter = () => {
+  const dispatch = useDispatch();
+  const filter = useSelector(filterValue);
+  return (
+    <form style={{display:'flex', flexDirection:'column'}}>
+      <label>
+      <span style={{textAlign:'center'}}>Find contacts by name</span>
         <input
-        type="text"
-        name="name"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        required
-        onChange={e=> dispatch(filterContact(e.target.value.toLocaleLowerCase()))}
-      />
-    )
-}
+          type="text"
+          name="filter"
+          title="find some contact"
+          required
+          value={filter}
+          onChange={e => dispatch(setFilter(e.target.value))}
+        />
+      </label>
+    </form>
+  );
+};
