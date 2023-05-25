@@ -4,7 +4,6 @@ import {
   NameContact,
   Span,
   Wrap,
-  Icon,
   ListContact,
 } from './ContactList.styled';
 
@@ -23,7 +22,6 @@ export const ContactList = () => {
         <ListContact>
           {listOfContacts.map(({ id, name, number }) => (
             <List key={id}>
-              {loader && <p>загружаю</p>}
               <Wrap>
                 <NameContact>{name}</NameContact>
                 <Span>{number}</Span>
