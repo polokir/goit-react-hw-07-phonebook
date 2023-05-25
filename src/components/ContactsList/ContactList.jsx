@@ -8,11 +8,10 @@ import {
 } from './ContactList.styled';
 
 import { deleteContact } from 'Redux/operations';
-import { IsLoading, filteredContacts } from 'Redux/selectors';
+import {  filteredContacts } from 'Redux/selectors';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
-  const loader = useSelector(IsLoading);
 
   const listOfContacts = useSelector(filteredContacts);
 
